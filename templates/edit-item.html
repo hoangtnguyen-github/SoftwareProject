@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+
+{% block title %} Edit an Item {% endblock %}
+
+
+{% block body %}
+
+<h3>Edit a item</h3>
+<hr>
+<form method="POST" action="{{ url_for('update_item', item_id=item['_id']) }}">
+
+    <div class="form-group">
+        <label for="name"> Name: </label>
+        <input type="text" id="name" name="name" class="form-control" value="{{ item['name'] }}"
+            required autofocus>
+    </div>
+
+    <div class="form-group">
+        <label for="shift_added"> Shift added: </label>
+        <input type="number" id="shift_added" name="shift_added" class="form-control" min="1" max="3" value="{{ item['shift_added'] }}"
+            required autofocus>
+    </div>
+
+    <div class="form-group">
+        <label for="material"> Material: </label>
+        <input type="text" id="material" name="material" class="form-control" value="{{ item['material'] }}"
+            required autofocus>
+    </div>
+
+    <div class="form-group">
+        <label for="location"> Location: </label>
+        <input type="text" id="location" name="location" class="form-control" value="{{ item['location'] }}"
+            required autofocus>
+    </div>
+    
+    <div class="form-group">
+        <label for="price"> Price($): </label>
+        <input type="number" id="price" name="price" class="form-control" value="{{ item['price'] }}"
+            required autofocus>
+    </div>
+
+    <div class="form-group">
+        <label for="weight"> Weight(lbs): </label>
+        <input type="number" id="weight" name="weight" class="form-control" min="1" max="1000000" value="{{ item['name'] }}"
+            required autofocus>
+    </div>
+
+   
+
+    <div class="form-group"> <label for=" addedby"> Added by: </label>
+        <input type="text " name="addedby" class="form-control" value="{{ item['addedby'] }}" readonly>
+    </div>
+
+    <div class="form-group"> <label for=" date_added"> Date added: </label>
+        <input type="text " name="date_added" class="form-control" value="{{ item['date_added'] }}" readonly>
+    </div>
+
+    <div class="form-group"> <label for=" date_modified"> Last modified: </label>
+        <input type="text " name="date_modified" class="form-control" value="{{ item['date_modified'] }}" readonly>
+    </div>
+
+    <div>
+        <input type="submit" class="btn btn-secondary" value="Update Item"></div>
+
+</form>
+<hr>
+
+<br>
+
+{% endblock %}

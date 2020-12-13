@@ -1,0 +1,67 @@
+{% extends 'base.html' %}
+
+{% block title %} Items Administration {% endblock %}
+
+
+{% block body %} 
+
+<h1>Item Admin Page</h1>
+<hr>
+
+<br clear="all">
+
+<h3>All Items</h3>
+<form method="GET" action="{{ url_for('add_item') }}">
+    <button type="submit" class="btn btn-info">Add a new item</button>
+</form>
+
+<br>
+{% if all_items %}
+<table class="table table-hover">
+    <thead>
+        <tr>
+            <th scope="col">ItemID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Shift Added</th>
+            <th scope="col">Material</th>
+            <th scope="col">Location</th>
+            <th scope="col">Price</th>
+            <th scope="col">Weight(In pounds)</th>
+            <th scope="col">Added By</th>
+            <th scope="col">Date Added</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for item in all_items %}
+        <tr>
+
+            <td> {{ item['itemid'] }}</td>
+            <td> {{ item['name'] }}</td>
+            <td> {{ item['shift_added'] }}</td>
+            <td> {{ item['material'] }}</td>
+            <td> {{ item['location'] }}</td>
+            <td> {{ item['price'] }}</td>
+            <td> {{ item['weight'] }}</td>
+            <td> {{ item['addedby'] }}</td>
+            <td> {{ item['itemid'] }}</td>
+            <td> {{ item['date_added'] }}</td>
+            <td>
+                <form action="{{ url_for('edit_item', item_id=item['_id']) }}" method="POST">
+                    <input type="submit" class="btn btn-primary" value="Details" />
+                </form>
+            </td>
+            <td>
+                <form action="{{ url_for('delete_item', item_id=item['_id']) }}" method="POST">
+                    <input type="submit" class="btn btn-danger" value="Delete" />
+                </form>
+            </td>
+
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}
